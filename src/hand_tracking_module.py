@@ -64,7 +64,4 @@ class HandDetection():
                 if positions[8][1] < positions[6][1]:
                     finger_count += 1
 
-                
-
-
         return finger_count
