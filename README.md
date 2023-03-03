@@ -7,3 +7,6 @@ For this application to function, make sure to install MediaPipe (for hand-track
 pip install mediapipe
 pip install opencv-python
 ```
+
+## Usage
+The file `/src/FingerTracker.py` can be downloaded and run in an IDE such as PyCharm or VS Code.
