@@ -9,4 +9,7 @@ pip install opencv-python
 ```
 
 ## Usage
-The file `/src/FingerTracker.py` can be downloaded and run in an IDE such as PyCharm or VS Code.
+The file `/src/app.py` can be downloaded and run in an IDE such as PyCharm or VS Code. The file `/src/hand_tracking_module.py` defines a class consisting of the funcionality of the `app.py` file.
+
+## TODO
+File `hand_tracking_module.py` is a work in progress; it is recommended to use the `app.py` file instead until further notice.
