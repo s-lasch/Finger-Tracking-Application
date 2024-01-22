@@ -8,9 +8,12 @@
 <body>
     <h1>Hand Gesture Recognition</h1>
     <video id="video_feed" autoplay playsinline></video>
+    <canvas id="hand_canvas"></canvas>
     
     <script>
         const video = document.getElementById('video_feed');
+        const canvas = document.getElementById('hand_canvas');
+        const context = canvas.getContext('2d');
 
         // Request access to the user's camera
         navigator.mediaDevices.getUserMedia({ video: true })
@@ -20,6 +23,14 @@
             .catch((error) => {
                 console.error('Error accessing camera:', error);
             });
+
+        video.addEventListener('loadedmetadata', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+        });
+
+        // Other hand tracking logic can be added here using the 'context' variable
+        // For example, you can draw hand landmarks on the canvas
     </script>
 </body>
 </html>
