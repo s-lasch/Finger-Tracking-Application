@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hand Gesture Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Hand Gesture Recognition</h1>
     <video id="video_feed" autoplay playsinline></video>
     <canvas id="hand_canvas"></canvas>
-    
+
     <script>
         const video = document.getElementById('video_feed');
         const canvas = document.getElementById('hand_canvas');
         const context = canvas.getContext('2d');
 
-        // Request access to the user's camera
         navigator.mediaDevices.getUserMedia({ video: true })
             .then((stream) => {
                 video.srcObject = stream;
@@ -29,8 +29,30 @@
             canvas.height = video.videoHeight;
         });
 
-        // Other hand tracking logic can be added here using the 'context' variable
-        // For example, you can draw hand landmarks on the canvas
+        video.addEventListener('loadeddata', () => {
+            // Additional setup or logic can be added here
+        });
+
+        video.addEventListener('play', () => {
+            const drawHandLandmarks = () => {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw hand landmarks logic
+                if (results && results.multi_hand_landmarks) {
+                    for (const hand_landmarks of results.multi_hand_landmarks) {
+                        mp_drawing.draw_landmarks(
+                            context,
+                            hand_landmarks,
+                            mp_hands.HAND_CONNECTIONS
+                        );
+                    }
+                }
+
+                requestAnimationFrame(drawHandLandmarks);
+            };
+
+            drawHandLandmarks();
+        });
     </script>
 </body>
 </html>
