@@ -1,3 +1,4 @@
 cv2
 mediapipe
 opencv-python
+gunicorn
