@@ -7,13 +7,19 @@
 </head>
 <body>
     <h1>Hand Gesture Recognition</h1>
-    <img id="video_feed" src="{{ url_for('video_feed') }}" alt="Hand Gesture Video Feed">
+    <video id="video_feed" autoplay playsinline></video>
     
     <script>
         const video = document.getElementById('video_feed');
-        const videoSource = "{{ url_for('video_feed') }}";
 
-        video.src = videoSource;
+        // Request access to the user's camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((error) => {
+                console.error('Error accessing camera:', error);
+            });
     </script>
 </body>
 </html>
